@@ -301,7 +301,7 @@ const sortOrders = [
 
 const prices = [
   {
-    name: '$1 to $20',
+    name: '1 to 20',
     value: '1-20',
   },
   {

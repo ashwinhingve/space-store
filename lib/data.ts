@@ -5,29 +5,29 @@ import { i18n } from '@/i18n-config'
 
 const users: IUserInput[] = [
   {
-    name: 'John',
-    email: 'admin@example.com',
+    name: 'SPACE',
+    email: 'example@gmail.com',
     password: bcrypt.hashSync('123456', 5),
     role: 'Admin',
     address: {
-      fullName: 'John Doe',
+      fullName: 'space automation',
       street: '111 Main St',
-      city: 'New York',
-      province: 'NY',
-      postalCode: '10001',
-      country: 'USA',
+      city: 'bhopal',
+      province: 'MP',
+      postalCode: '460-663',
+      country: 'IND',
       phone: '123-456-7890',
     },
     paymentMethod: 'Stripe',
     emailVerified: false,
   },
   {
-    name: 'Jane',
-    email: 'jane@example.com',
+    name: 'SPACE',
+    email: 'SPACE@example.com',
     password: bcrypt.hashSync('123456', 5),
     role: 'User',
     address: {
-      fullName: 'Jane Harris',
+      fullName: 'space hingve',
       street: '222 Main St',
       city: 'New York',
       province: 'NY',
@@ -1251,18 +1251,18 @@ We also provide helpful resources such as order tracking, product guides, and FA
         pageSize: 9,
       },
       site: {
-        name: 'NxtAmzn',
+        name: 'Space Automation',
         description:
-          'NxtAmzn is a sample Ecommerce website built with Next.js, Tailwind CSS, and MongoDB.',
-        keywords: 'Next Ecommerce, Next.js, Tailwind CSS, MongoDB',
+          'Space Automation is a sample Ecommerce website built for learning.',
+        keywords: 'Space Ecommerce, Space Automation, Ecommerce, Automation',
         url: 'https://next-mongo-ecommerce-final.vercel.app',
         logo: '/icons/logo.svg',
         slogan: 'Spend less, enjoy more.',
-        author: 'Next Ecommerce',
-        copyright: '2000-2024, Next-Ecommerce.com, Inc. or its affiliates',
-        email: 'admin@example.com',
-        address: '123, Main Street, Anytown, CA, Zip 12345',
-        phone: '+1 (123) 456-7890',
+        author: 'Ecommerce store',
+        copyright: '2024-2025, spacesautomation.com',
+        email: 'info@spacesautomation.com.com',
+        address: 'bhopal, Madhya Pradesh, India',
+        phone: '+91 123 456 7890',
       },
       carousels: [
         {
@@ -1290,16 +1290,17 @@ We also provide helpful resources such as order tracking, product guides, and FA
       })),
       defaultLanguage: 'en-US',
       availableCurrencies: [
+        { name: 'Indian rupee', code: 'INR', symbol: '₹', convertRate: 1, },
         {
           name: 'United States Dollar',
           code: 'USD',
           symbol: '$',
-          convertRate: 1,
+          convertRate:  0.012,
         },
-        { name: 'Euro', code: 'EUR', symbol: '€', convertRate: 0.96 },
-        { name: 'UAE Dirham', code: 'AED', symbol: 'AED', convertRate: 3.67 },
+        { name: 'Euro', code: 'EUR', symbol: '€', convertRate: 0.011 },
+       
       ],
-      defaultCurrency: 'USD',
+      defaultCurrency: 'INR',
       availablePaymentMethods: [
         { name: 'PayPal', commission: 0 },
         { name: 'Stripe', commission: 0 },

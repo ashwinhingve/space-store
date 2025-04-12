@@ -26,16 +26,16 @@ const sortOrders = [
 
 const prices = [
   {
-    name: '$1 to $20',
-    value: '1-20',
+    name: '₹1 to ₹200',
+    value: '1-200',
   },
   {
-    name: '$21 to $50',
-    value: '21-50',
+    name: '₹100 to ₹500',
+    value: '100-500',
   },
   {
-    name: '$51 to $1000',
-    value: '51-1000',
+    name: '₹500 to ₹1000',
+    value: '500-1000',
   },
 ]
 

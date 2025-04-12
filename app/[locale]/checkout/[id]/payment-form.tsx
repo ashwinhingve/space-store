@@ -22,9 +22,12 @@ import StripeForm from './stripe-form'
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
-)
+// Only initialize Stripe if publishable key is available
+const stripePublishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+const stripePromise = stripePublishableKey 
+  ? loadStripe(stripePublishableKey)
+  : null
+
 export default function OrderDetailsForm({
   order,
   paypalClientId,
@@ -133,7 +136,7 @@ export default function OrderDetailsForm({
                 </PayPalScriptProvider>
               </div>
             )}
-            {!isPaid && paymentMethod === 'Stripe' && clientSecret && (
+            {!isPaid && paymentMethod === 'Stripe' && clientSecret && stripePromise && (
               <Elements
                 options={{
                   clientSecret,
@@ -145,6 +148,18 @@ export default function OrderDetailsForm({
                   orderId={order._id}
                 />
               </Elements>
+            )}
+
+            {!isPaid && paymentMethod === 'Stripe' && (!clientSecret || !stripePromise) && (
+              <div className="text-destructive">
+                Stripe payment is not available. Please contact support.
+                <Button
+                  className='w-full mt-2 rounded-full'
+                  onClick={() => router.push(`/account/orders/${order._id}`)}
+                >
+                  View Order
+                </Button>
+              </div>
             )}
 
             {!isPaid && paymentMethod === 'Cash On Delivery' && (

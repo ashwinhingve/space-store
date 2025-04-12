@@ -25,10 +25,10 @@ import { isRedirectError } from 'next/dist/client/components/redirect-error'
 const signUpDefaultValues =
   process.env.NODE_ENV === 'development'
     ? {
-        name: 'john doe',
-        email: 'john@me.com',
-        password: '123456',
-        confirmPassword: '123456',
+        name: 'space automation',
+        email: '',
+        password: '',
+        confirmPassword: '',
       }
     : {
         name: '',

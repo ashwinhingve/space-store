@@ -33,11 +33,11 @@ AskReviewOrderItemsEmail.PreviewProps = {
     taxPrice: 0,
     shippingPrice: 0,
     user: {
-      name: 'John Doe',
-      email: 'john.doe@example.com',
+      name: 'space automation',
+      email: 'SPACE@example.com',
     },
     shippingAddress: {
-      fullName: 'John Doe',
+      fullName: 'Space automation',
       street: '123 Main St',
       city: 'New York',
       postalCode: '12345',
