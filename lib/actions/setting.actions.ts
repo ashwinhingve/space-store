@@ -16,15 +16,21 @@ export const getNoCachedSetting = async (): Promise<ISettingInput> => {
 }
 
 export const getSetting = async (): Promise<ISettingInput> => {
-  if (!globalForSettings.cachedSettings) {
-    console.log('hit db')
-    await connectToDatabase()
-    const setting = await Setting.findOne().lean()
-    globalForSettings.cachedSettings = setting
-      ? JSON.parse(JSON.stringify(setting))
-      : data.settings[0]
+  try {
+    if (!globalForSettings.cachedSettings) {
+      console.log('Fetching settings from database')
+      await connectToDatabase()
+      const setting = await Setting.findOne().lean()
+      globalForSettings.cachedSettings = setting
+        ? JSON.parse(JSON.stringify(setting))
+        : data.settings[0]
+    }
+    return globalForSettings.cachedSettings as ISettingInput
+  } catch (error) {
+    console.error('Error fetching settings:', error)
+    // Return default settings if database connection fails
+    return data.settings[0] as ISettingInput
   }
-  return globalForSettings.cachedSettings as ISettingInput
 }
 
 export const updateSetting = async (newSetting: ISettingInput) => {

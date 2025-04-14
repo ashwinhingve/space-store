@@ -12,6 +12,10 @@ const nextConfig: NextConfig = withNextIntl()({
       },
     ],
   },
+  poweredByHeader: false,
+  reactStrictMode: true,
+  // Configure production output tracing for better error diagnostics
+  output: process.env.NODE_ENV === 'production' ? 'standalone' : undefined,
 })
 
 export default nextConfig

@@ -12,23 +12,41 @@ import {
 import { getSetting } from '@/lib/actions/setting.actions'
 import { toSlug } from '@/lib/utils'
 import { getTranslations } from 'next-intl/server'
+import { ICarousel } from '@/types'
+import { IProduct } from '@/lib/db/models/product.model'
+
+interface CardItem {
+  name: string
+  href: string
+  image: string
+}
 
 export default async function HomePage() {
   const t = await getTranslations('Home')
-  const { carousels } = await getSetting()
-  const todaysDeals = await getProductsByTag({ tag: 'todays-deal' })
-  const bestSellingProducts = await getProductsByTag({ tag: 'best-seller' })
-
-  const categories = (await getAllCategories()).slice(0, 4)
-  const newArrivals = await getProductsForCard({
-    tag: 'new-arrival',
-  })
-  const featureds = await getProductsForCard({
-    tag: 'featured',
-  })
-  const bestSellers = await getProductsForCard({
-    tag: 'best-seller',
-  })
+  
+  let carousels: ICarousel[] = []
+  let todaysDeals: IProduct[] = []
+  let bestSellingProducts: IProduct[] = []
+  let categories: string[] = []
+  let newArrivals: CardItem[] = []
+  let featureds: CardItem[] = []
+  let bestSellers: CardItem[] = []
+  
+  try {
+    const { carousels: fetchedCarousels } = await getSetting()
+    carousels = fetchedCarousels || []
+    
+    todaysDeals = await getProductsByTag({ tag: 'todays-deal' })
+    bestSellingProducts = await getProductsByTag({ tag: 'best-seller' })
+    categories = (await getAllCategories()).slice(0, 4)
+    newArrivals = await getProductsForCard({ tag: 'new-arrival' })
+    featureds = await getProductsForCard({ tag: 'featured' })
+    bestSellers = await getProductsForCard({ tag: 'best-seller' })
+  } catch (error) {
+    console.error('Error loading home page data:', error)
+    // Use empty arrays if there's an error
+  }
+  
   const cards = [
     {
       title: t('Categories to explore'),
